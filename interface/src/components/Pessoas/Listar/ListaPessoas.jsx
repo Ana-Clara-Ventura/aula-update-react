@@ -4,10 +4,12 @@ import ListaPessoasUtil from "./ListaPessoasUtil";
 import { FaTrashCan } from "react-icons/fa6";
 import { AiFillEdit } from "react-icons/ai";
 import style from './ListaPessoas.module.css';
+import { useNavigate } from 'react-router';
 
 function ListaPessoas() {
     const [pessoas, setPessoas] = useState([]);
     const util = new ListaPessoasUtil();
+    const navegacao = useNavigate();
 
     useEffect(() => {
         const fetchPessoas = async () => {
@@ -22,9 +24,10 @@ function ListaPessoas() {
         fetchPessoas();
     }, []);
 
-    const atualizar = () => {
-        // atualizar
+    const atualizar = (pessoa) => {
+        navegacao('/atualizar', { state: {garrafa: pessoa}, replace: true});
     }
+
 
     return (
         <>
@@ -58,7 +61,7 @@ function ListaPessoas() {
                                         <FaTrashCan  onClick={() => alert('deletar')} className={style.pTableBodyButtons}/>
                                     </td>
                                     <td>
-                                        <AiFillEdit  onClick={() => alert('atualizar')} className={style.pTableBodyButtons}/>
+                                    <AiFillEdit  onClick={() => atualizar(pessoa)} className={style.pTableBodyButtons}/>
                                     </td>
                                 </tr>
                             ))}
