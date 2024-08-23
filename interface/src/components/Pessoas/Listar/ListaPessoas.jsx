@@ -15,6 +15,10 @@ function ListaPessoas() {
         const fetchPessoas = async () => {
             try {
                 const pessoas = await PessoasRequests.listarPessoas();
+                
+                // Ordena a lista de pessoas por nome em ordem alfabética
+                pessoas.sort((a, b) => a.nome.localeCompare(b.nome));
+                
                 setPessoas(pessoas);
             } catch (error) {
                 console.error('Erro ao buscar alunos: ', error);
@@ -25,9 +29,8 @@ function ListaPessoas() {
     }, []);
 
     const atualizar = (pessoa) => {
-        navegacao('/atualizar', { state: {garrafa: pessoa}, replace: true});
+        navegacao('/atualizar', { state: {garrafa: pessoa}, replace: true });
     }
-
 
     return (
         <>

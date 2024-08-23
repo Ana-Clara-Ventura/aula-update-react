@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router';
  * Componente com o formulário para atualizar os dados do aluno
  */
 function AtualizarPessoa() {
+
+  
     // Função para atualizar os dados do aluno no banco de dados
     const handleSubmit = async (e) => {
         e.preventDefault();
